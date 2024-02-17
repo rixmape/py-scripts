@@ -32,19 +32,6 @@ def get_args() -> argparse.Namespace:
     return parser.parse_args()
 
 
-def setup_logging(enable: bool):
-    """
-    Set up logging configuration based on the command-line argument.
-
-    Args:
-        enable (bool): Flag to enable or disable logging.
-    """
-    if enable:
-        logging.basicConfig(level=logging.INFO)
-    else:
-        logging.basicConfig(level=logging.WARNING)
-
-
 def hash_file(filepath: str) -> str:
     """
     Generate the hash of the file.
@@ -106,6 +93,11 @@ def print_duplicates(duplicates: list[tuple[str, str]]):
 
 if __name__ == "__main__":
     args = get_args()
-    setup_logging(args.enable_logging)
+
+    if args.enable_logging:
+        logging.basicConfig(level=logging.INFO)
+    else:
+        logging.basicConfig(level=logging.WARNING)
+
     duplicates = find_duplicates(args.directory)
     print_duplicates(duplicates)

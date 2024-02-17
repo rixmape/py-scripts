@@ -41,19 +41,6 @@ def get_args() -> argparse.Namespace:
     return parser.parse_args()
 
 
-def setup_logging(enable: bool):
-    """
-    Set up logging configuration based on the command-line argument.
-
-    Args:
-        enable (bool): Flag to enable or disable logging.
-    """
-    if enable:
-        logging.basicConfig(level=logging.INFO)
-    else:
-        logging.basicConfig(level=logging.WARNING)
-
-
 def download_pdf(url: str, output_path: str):
     """
     Download a PDF file from a URL.
@@ -89,5 +76,10 @@ def download_all_pdfs(url: str, output_dir: str):
 
 if __name__ == "__main__":
     args = get_args()
-    setup_logging(args.enable_logging)
+
+    if args.enable_logging:
+        logging.basicConfig(level=logging.INFO)
+    else:
+        logging.basicConfig(level=logging.WARNING)
+
     download_all_pdfs(args.url, args.output)

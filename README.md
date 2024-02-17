@@ -9,4 +9,4 @@ A collection of helpful scripts written in Python.
 - [X] Extract dialogues from a subtitle file
 - [X] Download all PDFs given a URL
 - [X] Find all duplicate files in a directory
-- [ ] Randomly rename all files in a directory
+- [X] Randomly rename all files in a directory

@@ -3,7 +3,7 @@
 # Directories
 SCRIPT_DIR := scripts
 BIN_DIR := bin
-VENV_DIR := .venv
+VENV_DIR := venv
 
 # Find all Python scripts in the scripts directory
 PY_SCRIPTS := $(wildcard $(SCRIPT_DIR)/*.py)
