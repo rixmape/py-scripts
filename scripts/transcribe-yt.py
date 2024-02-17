@@ -41,19 +41,6 @@ def get_args() -> argparse.Namespace:
     return parser.parse_args()
 
 
-def setup_logging(enable: bool):
-    """
-    Set up logging configuration based on the command-line argument.
-
-    Args:
-        enable (bool): Flag to enable or disable logging.
-    """
-    if enable:
-        logging.basicConfig(level=logging.INFO)
-    else:
-        logging.basicConfig(level=logging.WARNING)
-
-
 def get_audio(video_url: str) -> str:
     """
     Download the audio from the YouTube video.
@@ -151,7 +138,12 @@ def cleanup_audio_files(audio_chunks: list[str], keep_audio: bool):
 
 if __name__ == "__main__":
     args = get_args()
-    setup_logging(args.enable_logging)
+
+    if args.enable_logging:
+        logging.basicConfig(level=logging.INFO)
+    else:
+        logging.basicConfig(level=logging.WARNING)
+
     audio_path = get_audio(args.video_url)
     audio_chunks = split_audio(audio_path)
     client = OpenAI()
